@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TopController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -16,9 +17,7 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', function () {
-  return Inertia::render('Top');
-})->name('top');
+Route::get('/', [TopController::class, 'index'])->name('top');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
