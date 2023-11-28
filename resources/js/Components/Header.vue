@@ -5,21 +5,21 @@ const props = defineProps({
 });
 </script>
 <template>
-  <header>
+  <header id="header">
     <div class="header-main">
-      <div class="header-right">
+      <div class="header-left">
         <div class="top-links">
-          <img src="images/main-logo-3.png" class="main-logo" alt="">
-          <Link :href="route('top')" class="top-link-text" style="">Anniv</Link>
+          <img src="images/main-logo.png" class="main-logo" alt="">
+          <Link :href="route('top')" class="top-link-text">Anniv</Link>
         </div>
       </div>
-      <div class="header-left">
+      <div class="header-right">
         <!-- ログアウト状態 -->
         <Link v-if="!props.isLoggedIn" :href="route('login')" class="header-left-link">ログイン</Link>
         <Link v-if="!props.isLoggedIn" :href="route('register')" class="header-left-link">新規登録</Link>
         <!-- ログイン状態 -->
         <Link v-if="props.isLoggedIn" method="post" :href="route('logout')" class="header-left-link">ログアウト</Link>
-        <Link v-if="props.isLoggedIn" :href="route('top')" class="header-left-link">ユーザー編集</Link>
+        <Link v-if="props.isLoggedIn" :href="route('profile.edit')" class="header-left-link">ユーザー編集</Link>
       </div>
     </div>
   </header>

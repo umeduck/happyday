@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TopController;
+use App\Http\Controllers\ContactController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -18,6 +19,15 @@ use Inertia\Inertia;
 */
 
 Route::get('/', [TopController::class, 'index'])->name('top');
+
+//入力ページ
+Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
+
+//送信処理
+Route::post('/contact/thanks', [ContactController::class, 'send'])->name('contact.send');
+
+//送信完了ページ
+Route::get('/contact/completion', [ContactController::class, 'completion'])->name('contact.completion');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
