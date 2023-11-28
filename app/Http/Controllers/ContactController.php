@@ -42,7 +42,7 @@ class ContactController extends Controller
       return to_route('top');
     } else {
       // 開発中のみコメントアウト(メールが飛ばないように)
-      Mail::to($requestValue['email'])->send(new ContentSendmail($requestValue));
+      // Mail::to($requestValue['email'])->send(new ContentSendmail($requestValue));
       // 開発中のみコメントアウト(メールが飛ばないように)
       
       Contact::create([
