@@ -1,4 +1,6 @@
 /*! destyle.css v4.0.0 | MIT License | https://github.com/nicolas-cusan/destyle.css */
+/* 参照先 */
+/* https://github.com/nicolas-cusan/destyle.css/blob/master/destyle.css */
 
 /* Reset box-model and set borders */
 /* ============================================ */
@@ -411,4 +413,11 @@ th {
 th {
   text-align: left;
   font-weight: bold;
+}
+/* 自分追加文 */
+body{
+  background-color: #f5f5f5;
+}
+p{
+  font-family: serif;
 }

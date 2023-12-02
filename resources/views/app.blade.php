@@ -18,7 +18,7 @@
         @routes
         @vite(['resources/js/app.js', "resources/js/Pages/{$page['component']}.vue"])
         @inertiaHead
-        <link rel="stylesheet" href="../css/reset.css">
+        <link rel="stylesheet" href="{{ asset('css/reset.css') }}">
     </head>
     <body class="font-sans antialiased">
         @inertia
