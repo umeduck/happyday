@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Api\CountDayController;
 
 class TopController extends Controller
 {
@@ -15,9 +16,11 @@ class TopController extends Controller
      */
     public function index()
     {
+      $count = CountDayController::dayCount('1985-10-30');
       $isLoggedIn = Auth::check();
       return Inertia::render('Top', [
-        'isLoggedIn' => $isLoggedIn
+        'isLoggedIn' => $isLoggedIn,
+        'count' => $count,
       ]);
     }
 
