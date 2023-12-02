@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Api\CountDayController;
+use Illuminate\Support\Facades\DB;
+
 
 class TopController extends Controller
 {
@@ -16,11 +18,18 @@ class TopController extends Controller
      */
     public function index()
     {
-      $count = CountDayController::dayCount('1985-10-30');
       $isLoggedIn = Auth::check();
+      if ($isLoggedIn) {
+        $userInfo = DB::table('users')->where('id',Auth::id())->get(['name','birthday']);
+        $count = CountDayController::dayCount($userInfo[0]->birthday);
+        return Inertia::render('Top', [
+          'isLoggedIn' => $isLoggedIn,
+          'count' => $count,
+          'userInfo' => $userInfo
+        ]);
+      }
       return Inertia::render('Top', [
-        'isLoggedIn' => $isLoggedIn,
-        'count' => $count,
+        'isLoggedIn' => $isLoggedIn
       ]);
     }
 
