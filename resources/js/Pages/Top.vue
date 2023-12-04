@@ -2,7 +2,7 @@
 import { Head, Link } from '@inertiajs/vue3';
 import Header from '../Components/Header.vue';
 import Footer from '../Components/Footer.vue';
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, reactive } from 'vue';
 const props = defineProps({
   isLoggedIn: Boolean,
   count: Date,
@@ -32,7 +32,7 @@ if(props.isLoggedIn){
       </div>
     </div>
     <div class="main-right">
-      <div class="user-birthday">
+      <div v-if="props.isLoggedIn" class="user-birthday">
         <p class="user-birthday-text">{{ name }}の誕生日まであと</p>
         <p class="user-birthday-count">{{ count }}日</p>
       </div>
