@@ -62,7 +62,7 @@ footer{
   position: absolute;
   bottom: 0;
   width: 100%;
-  background-image: linear-gradient(90deg, #FFFFFF, #f810f44f);
+  background-image: linear-gradient(to bottom, #f810f44f, #f0f0f0, #f810f44f);
 }
 .footer-main{
   display: flex;

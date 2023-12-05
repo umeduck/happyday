@@ -30,7 +30,7 @@ const props = defineProps({
   align-items: center;
   justify-content: space-between;
   padding: 0 100px;
-  background-image: linear-gradient(90deg, #FFFFFF, #f810f44f);
+  background-image: linear-gradient(to bottom, #f810f44f, #f0f0f0, #f810f44f);
 }
 .top-links{
   display: flex;
