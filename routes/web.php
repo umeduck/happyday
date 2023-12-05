@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TopController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\TargetDateController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -28,6 +29,9 @@ Route::post('/contact/thanks', [ContactController::class, 'send'])->name('contac
 
 //送信完了ページ
 Route::get('/contact/completion', [ContactController::class, 'completion'])->name('contact.completion');
+
+Route::resource('target-date',TargetDateController::class)
+->middleware(['auth','verified']);
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
