@@ -20,12 +20,21 @@ class TopController extends Controller
     {
       $isLoggedIn = Auth::check();
       if ($isLoggedIn) {
+        // ユーザー情報
         $userInfo = DB::table('users')->where('id',Auth::id())->get(['name','birthday']);
         $count = CountDayController::dayCount($userInfo[0]->birthday);
+
+        // ターゲット日情報
+        $targetDates = DB::table('target_dates')->where('user_id',Auth::id())->get(['title','target_date','target_date_type']);
+        foreach ($targetDates as $targetDate) {
+          $targetDateCount = CountDayController::dayCount($targetDate->target_date);
+          $targetDate->target_date_count = $targetDateCount;
+        }
         return Inertia::render('Top', [
           'isLoggedIn' => $isLoggedIn,
           'count' => $count,
-          'userInfo' => $userInfo
+          'userInfo' => $userInfo,
+          'targetDates' => $targetDates
         ]);
       }
       return Inertia::render('Top', [

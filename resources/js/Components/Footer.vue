@@ -59,8 +59,6 @@ import { Link } from '@inertiajs/vue3';
   src: url(/fonts/MochiyPopOne-Regular.ttf);
 }
 footer{
-  position: absolute;
-  bottom: 0;
   width: 100%;
   background-image: linear-gradient(to bottom, #f810f44f, #f0f0f0, #f810f44f);
 }

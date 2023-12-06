@@ -6,12 +6,15 @@ import { ref, onMounted, reactive } from 'vue';
 const props = defineProps({
   isLoggedIn: Boolean,
   count: Date,
-  userInfo: Object
+  userInfo: Object,
+  targetDates: Object
 });
 
 let name = '';
+let targetDates = Object;
 if(props.isLoggedIn){
   name = props.userInfo[0].name;
+  targetDates = props.targetDates;
 }
 </script>
 <template>
@@ -20,7 +23,16 @@ if(props.isLoggedIn){
   <div class="main" :style=completionHeight>
     <div class="main-left">
       <div class="anniv-contents">
-        <div class="anniv-content">
+        <div v-if="props.isLoggedIn" v-for="targetDate in targetDates" class="anniv-content">
+          <div class="anniv-content-top">
+            <Link :href="route('target-date.show', {id: targetDate.id})" class="text-blue-400">{{ targetDate.title }}</Link>
+          </div>
+          <div class="anniv-content-bottom">
+            <p>{{ targetDate.target_date }}</p>
+            <p>残り{{ targetDate.target_date_count }}日</p>
+          </div>
+        </div>
+        <div v-else class="anniv-content">
           <div class="anniv-content-top">
             <p>小説発売日(サンプル)</p>
           </div>
@@ -44,6 +56,7 @@ if(props.isLoggedIn){
 .main{
   display: flex;
   padding: 30px 30px 30px 50px;
+  min-height: 554px;
 }
 .main-left{
   width: 80%;

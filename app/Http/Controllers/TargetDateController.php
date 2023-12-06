@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\TargetDate;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class TargetDateController extends Controller
 {
@@ -43,9 +45,12 @@ class TargetDateController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(TargetDate $targetDate)
     {
-        //
+      return Inertia::render('TargetDate/Show')
+      ->with([
+          'targetDate' => $targetDate
+      ]);
     }
 
     /**
