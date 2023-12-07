@@ -14,8 +14,11 @@ let name = '';
 let targetDates = Object;
 if(props.isLoggedIn){
   name = props.userInfo[0].name;
-  targetDates = props.targetDates;
+  targetDates = props.targetDates.sort((a, b) => a.target_date_count - b.target_date_count);
 }
+
+console.log(targetDates);
+
 </script>
 <template>
   <Head title="Anniv" />
@@ -66,6 +69,7 @@ if(props.isLoggedIn){
 .anniv-content{
   border: 1px solid black;
   padding: 20px;
+  margin-bottom: 20px;
 }
 .anniv-content-top{
   font-size: 30px;

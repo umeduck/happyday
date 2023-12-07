@@ -25,7 +25,7 @@ class TopController extends Controller
         $count = CountDayController::dayCount($userInfo[0]->birthday);
 
         // ターゲット日情報
-        $targetDates = DB::table('target_dates')->where('user_id',Auth::id())->get(['title','target_date','target_date_type']);
+        $targetDates = DB::table('target_dates')->where('user_id',Auth::id())->get(['id','title','target_date','target_date_type']);
         foreach ($targetDates as $targetDate) {
           $targetDateCount = CountDayController::dayCount($targetDate->target_date);
           $targetDate->target_date_count = $targetDateCount;
