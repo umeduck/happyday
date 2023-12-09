@@ -12,9 +12,9 @@ const props = defineProps({
 });
 
 const form = useForm({
-    title: '',
-    targetDate: '',
-    targetDateType: ''
+    title: 'タイトル',
+    targetDate: '2000-01-01',
+    targetDateType: '1'
 });
 
 const storeTargetDate = () => {
@@ -39,7 +39,7 @@ const storeTargetDate = () => {
           autofocus
         />
 
-        <InputError class="mt-2" :message="form.errors.name" />
+        <InputError class="mt-2" :message="form.errors.title" />
       </div>
 
       <div class="mt-4">
@@ -53,7 +53,7 @@ const storeTargetDate = () => {
           required
         />
 
-        <InputError class="mt-2" :message="form.errors.email" />
+        <InputError class="mt-2" :message="form.errors.targetDate" />
       </div>
 
       <div class="mt-4">
@@ -65,9 +65,8 @@ const storeTargetDate = () => {
           <option value=2>記念日</option>
         </select>
 
-        <InputError class="mt-2" :message="form.errors.email" />
+        <InputError class="mt-2" :message="form.errors.targetDateType" />
       </div>
-
       <div class="target-create-button">
         <button >登録</button>
       </div>

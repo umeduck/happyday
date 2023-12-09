@@ -42,7 +42,18 @@ class TargetDateController extends Controller
      */
     public function store(Request $request)
     {
-      dd($request);
+      $userId = Auth::id();
+      TargetDate::create([
+        'title' => $request->title,
+        'target_date' => $request->targetDate,
+        'target_date_type' => $request->targetDateType,
+        'user_id' => $userId
+      ]);
+      return to_route('top')
+        ->with([
+            'message' => '登録しました。',
+            'status' => 'success'
+        ]);
     }
 
     /**
