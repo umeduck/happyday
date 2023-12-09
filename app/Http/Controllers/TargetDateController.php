@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\TargetDate;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Api\CountDayController;
 
 class TargetDateController extends Controller
 {
@@ -25,7 +27,11 @@ class TargetDateController extends Controller
      */
     public function create()
     {
-        //
+      // ログインフラグ
+      $isLoggedIn = Auth::check();
+      return Inertia::render('TargetDate/Create', [
+        'isLoggedIn' => $isLoggedIn
+      ]);
     }
 
     /**
@@ -47,9 +53,16 @@ class TargetDateController extends Controller
      */
     public function show(TargetDate $targetDate)
     {
-      return Inertia::render('TargetDate/Show')
-      ->with([
-          'targetDate' => $targetDate
+      // ログインフラグ
+      $isLoggedIn = Auth::check();
+      
+      // ターゲットカウント計算
+      $targetDateCount = CountDayController::dayCount($targetDate->target_date);
+      $targetDate->target_date_count = $targetDateCount;
+
+      return Inertia::render('TargetDate/Show', [
+        'isLoggedIn' => $isLoggedIn,
+        'targetDate' => $targetDate
       ]);
     }
 
