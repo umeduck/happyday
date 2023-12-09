@@ -19,8 +19,8 @@ const props = defineProps({
         <Link v-if="!props.isLoggedIn" :href="route('register')" class="header-left-link">新規登録</Link>
         <!-- ログイン状態 -->
         <Link v-if="props.isLoggedIn" :href="route('target-date.create')" class="header-left-link">ターゲット日作成</Link>
-        <Link v-if="props.isLoggedIn" method="post" :href="route('logout')" class="header-left-link">ログアウト</Link>
         <Link v-if="props.isLoggedIn" :href="route('profile.edit')" class="header-left-link">ユーザー編集</Link>
+        <Link v-if="props.isLoggedIn" method="post" :href="route('logout')" class="header-left-link">ログアウト</Link>
       </div>
     </div>
   </header>
