@@ -28,7 +28,7 @@ console.log(targetDates);
       <div class="anniv-contents">
         <div v-if="props.isLoggedIn" v-for="targetDate in targetDates" class="anniv-content">
           <div class="anniv-content-top">
-            <Link :href="route('target-date.show', {id: targetDate.id})" class="text-blue-400">{{ targetDate.title }}</Link>
+            <a :href="route('target-date.show', {id: targetDate.id})" class="text-blue-400">{{ targetDate.title }}</a>
           </div>
           <div class="anniv-content-bottom">
             <p>{{ targetDate.target_date }}</p>
