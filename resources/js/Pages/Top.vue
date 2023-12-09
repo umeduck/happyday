@@ -23,12 +23,12 @@ console.log(targetDates);
 <template>
   <Head title="Anniv" />
   <Header :isLoggedIn = props.isLoggedIn></Header>
-  <div class="main" :style=completionHeight>
+  <div class="main-top" :style=completionHeight>
     <div class="main-left">
       <div class="anniv-contents">
         <div v-if="props.isLoggedIn" v-for="targetDate in targetDates" class="anniv-content">
           <div class="anniv-content-top">
-            <a :href="route('target-date.show', {id: targetDate.id})" class="text-blue-400">{{ targetDate.title }}</a>
+            <Link :href="route('target-date.show', {id: targetDate.id})" class="text-blue-400">{{ targetDate.title }}</Link>
           </div>
           <div class="anniv-content-bottom">
             <p>{{ targetDate.target_date }}</p>
@@ -56,7 +56,7 @@ console.log(targetDates);
   <Footer></Footer>
 </template>
 <style>
-.main{
+.main-top{
   display: flex;
   padding: 30px 30px 30px 50px;
   min-height: 554px;

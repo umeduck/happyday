@@ -13,9 +13,9 @@ const props =  defineProps({
 
 </script>
 <template>
-  <Head title="Anniv" />
+  <Head title="ターゲット日詳細" />
   <Header :isLoggedIn = props.isLoggedIn></Header>
-  <div class="main" :key="reloadKey">
+  <div class="main-target-show" :key="reloadKey">
     <div class="target-date-content">
       <div class="target-date-head">
         <p>{{ targetDate.title }}</p>
@@ -82,7 +82,7 @@ const props =  defineProps({
   <Footer></Footer>
 </template>
 <style scoped>
-.main{
+.main-target-show{
   padding: 30px 250px 30px 250px;
   min-height: 554px;
 }
