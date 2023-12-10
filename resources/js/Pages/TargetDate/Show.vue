@@ -9,8 +9,13 @@ const props =  defineProps({
   isLoggedIn : Boolean,
   targetDate : Object
 });
-
-
+const deleteTargetDate = id => {
+    console.log(id);
+  Inertia.delete(route('target-date.destroy', { target_date: id }),{
+    onBefore: () => confirm('本当に削除しますか？')
+  });
+};
+console.log(props.targetDate.id);
 </script>
 <template>
   <Head title="ターゲット日詳細" />
@@ -19,9 +24,9 @@ const props =  defineProps({
     <div class="target-date-content">
       <div class="target-date-head">
         <p>{{ targetDate.title }}</p>
-        <div class="">
-          <Link :href="route('top')" class="target-date-head-link">編集</Link>
-          <Link :href="route('top')" class="target-date-head-link">削除</Link>
+        <div class="target-date-head-link-wrapper">
+          <Link :href="route('target-date.edit', {id: targetDate.id})" class="target-date-head-link">編集</Link>
+          <button @click="deleteTargetDate(props.targetDate.id)" class="target-date-head-link">削除</button>
         </div>
       </div>
       <div class="target-date-body">
@@ -99,7 +104,13 @@ const props =  defineProps({
   display: flex;
   justify-content: space-between;
 }
+.target-date-head-link-wrapper{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .target-date-head-link{
+  font-size: 30px;
   margin-right: 10px;
   font-family: serif;
 }

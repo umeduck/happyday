@@ -81,11 +81,17 @@ class TargetDateController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
+     * @param  \App\Models\TargetDate  $targetDate
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(TargetDate $targetDate)
     {
-        //
+      // ログインチェック
+      $isLoggedIn = Auth::check();
+      return Inertia::render('TargetDate/Edit',[
+        'isLoggedIn' => $isLoggedIn,
+        'targetDate' => $targetDate
+      ]);
     }
 
     /**
@@ -95,9 +101,18 @@ class TargetDateController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, TargetDate $targetDate)
     {
-        //
+      $targetDate->title = $request->title;
+      $targetDate->target_date = $request->targetDate;
+      $targetDate->target_date_type = $request->targetDateType;
+      $targetDate->save();
+
+      return to_route('top')
+        ->with([
+            'message' => '更新しました。',
+            'status' => 'success'
+        ]);
     }
 
     /**
@@ -106,8 +121,13 @@ class TargetDateController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(TargetDate $targetDate)
     {
-        //
+      $targetDate->delete();
+      return to_route('top')
+      ->with([
+          'message' => '削除しました。',
+          'status' => 'danger'
+      ]);
     }
 }
