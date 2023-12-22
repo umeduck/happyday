@@ -33,6 +33,9 @@ Route::get('/contact/completion', [ContactController::class, 'completion'])->nam
 Route::resource('target-date',TargetDateController::class)
 ->middleware(['auth','verified']);
 
+Route::resource('memory',TargetDateController::class)
+->middleware(['auth','verified']);
+
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
