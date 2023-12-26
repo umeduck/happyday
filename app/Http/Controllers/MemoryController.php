@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Memory;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
+use Illuminate\Support\Facades\Auth;
 
 class MemoryController extends Controller
 {
@@ -43,9 +46,15 @@ class MemoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Memory $memory)
     {
-        //
+        // ログインフラグ
+      $isLoggedIn = Auth::check();
+
+      return Inertia::render('Memory/Show', [
+        'isLoggedIn' => $isLoggedIn,
+        'memory' => $memory
+      ]);
     }
 
     /**
@@ -79,6 +88,6 @@ class MemoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+      dd($id);
     }
 }

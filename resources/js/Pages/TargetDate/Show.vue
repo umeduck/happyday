@@ -7,7 +7,8 @@ import { Inertia } from '@inertiajs/inertia';
 
 const props =  defineProps({
   isLoggedIn : Boolean,
-  targetDate : Object
+  targetDate : Object,
+  memories : Object
 });
 const deleteTargetDate = id => {
     console.log(id);
@@ -15,7 +16,7 @@ const deleteTargetDate = id => {
     onBefore: () => confirm('本当に削除しますか？')
   });
 };
-console.log(props.targetDate.id);
+
 </script>
 <template>
   <Head title="ターゲット日詳細" />
@@ -34,52 +35,16 @@ console.log(props.targetDate.id);
       </div>
     </div>
     <div class="memory-contents">
-      <div class="memory-content">
+      <div v-for="memory in props.memories" class="memory-content">
         <div class="memory-head">
-          <p>タイトル</p>
+          <Link :href="route('memory.show', {id: memory.id})"><p>{{ memory.title }}</p></Link>
           <div class="">
             <Link :href="route('top')" class="memory-head-link">編集</Link>
             <Link :href="route('top')" class="memory-head-link">削除</Link>
           </div>
         </div>
         <div class="memory-body">
-          <p>日付</p>
-        </div>
-      </div>
-      <div class="memory-content">
-        <div class="memory-head">
-          <p>タイトル</p>
-          <div class="">
-            <Link :href="route('top')" class="memory-head-link">編集</Link>
-            <Link :href="route('top')" class="memory-head-link">削除</Link>
-          </div>
-        </div>
-        <div class="memory-body">
-          <p>日付</p>
-        </div>
-      </div>
-      <div class="memory-content">
-        <div class="memory-head">
-          <p>タイトル</p>
-          <div class="">
-            <Link :href="route('top')" class="memory-head-link">編集</Link>
-            <Link :href="route('top')" class="memory-head-link">削除</Link>
-          </div>
-        </div>
-        <div class="memory-body">
-          <p>日付</p>
-        </div>
-      </div>
-      <div class="memory-content">
-        <div class="memory-head">
-          <p>タイトル</p>
-          <div class="">
-            <Link :href="route('top')" class="memory-head-link">編集</Link>
-            <Link :href="route('top')" class="memory-head-link">削除</Link>
-          </div>
-        </div>
-        <div class="memory-body">
-          <p>日付</p>
+          <p>{{ memory.created_at }}</p>
         </div>
       </div>
     </div>

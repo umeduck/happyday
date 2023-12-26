@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Api\CountDayController;
+use Illuminate\Support\Facades\DB;
 
 class TargetDateController extends Controller
 {
@@ -71,9 +72,12 @@ class TargetDateController extends Controller
       $targetDateCount = CountDayController::dayCount($targetDate->target_date);
       $targetDate->target_date_count = $targetDateCount;
 
+      $memories = DB::table('memories')->where('user_id',Auth::id())->where('date_id', $targetDate->id)->get();
+
       return Inertia::render('TargetDate/Show', [
         'isLoggedIn' => $isLoggedIn,
-        'targetDate' => $targetDate
+        'targetDate' => $targetDate,
+        'memories' => $memories
       ]);
     }
 

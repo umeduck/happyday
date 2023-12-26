@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TopController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\TargetDateController;
+use App\Http\Controllers\MemoryController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -33,7 +34,7 @@ Route::get('/contact/completion', [ContactController::class, 'completion'])->nam
 Route::resource('target-date',TargetDateController::class)
 ->middleware(['auth','verified']);
 
-Route::resource('memory',TargetDateController::class)
+Route::resource('memory',MemoryController::class)
 ->middleware(['auth','verified']);
 
 Route::get('/dashboard', function () {

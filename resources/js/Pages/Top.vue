@@ -17,9 +17,6 @@ if(props.isLoggedIn){
   name = props.userInfo[0].name;
   targetDates = props.targetDates.sort((a, b) => a.target_date_count - b.target_date_count);
 }
-
-console.log(targetDates);
-
 </script>
 <template>
   <Head title="Anniv" />
