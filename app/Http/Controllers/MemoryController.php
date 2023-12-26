@@ -86,8 +86,14 @@ class MemoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Memory $memory)
     {
-      dd($id);
+      $dateId = $memory->date_id;
+      $memory->delete();
+      return to_route('target-date.show', ['target_date' => $dateId])
+      ->with([
+          'message' => '削除しました。',
+          'status' => 'danger'
+      ]);
     }
 }
