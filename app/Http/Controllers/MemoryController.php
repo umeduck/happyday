@@ -26,7 +26,11 @@ class MemoryController extends Controller
      */
     public function create()
     {
-        //
+      // ログインフラグ
+      $isLoggedIn = Auth::check();
+      return Inertia::render('Memory/Create', [
+        'isLoggedIn' => $isLoggedIn
+      ]);
     }
 
     /**
@@ -37,7 +41,7 @@ class MemoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      dd($request->file('file'),$request);
     }
 
     /**
@@ -48,7 +52,7 @@ class MemoryController extends Controller
      */
     public function show(Memory $memory)
     {
-        // ログインフラグ
+      // ログインフラグ
       $isLoggedIn = Auth::check();
 
       return Inertia::render('Memory/Show', [

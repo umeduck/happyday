@@ -23,7 +23,7 @@ const storeTargetDate = () => {
 </script>
 
 <template>
-  <Head title="Register" />
+  <Head title="target_date create" />
   <Header :isLoggedIn = props.isLoggedIn></Header>
   <div class="main-target-create">
     <form @submit.prevent="storeTargetDate" class="target-form">
