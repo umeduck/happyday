@@ -6,6 +6,8 @@ use App\Models\Memory;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+
 
 class MemoryController extends Controller
 {
@@ -41,7 +43,23 @@ class MemoryController extends Controller
      */
     public function store(Request $request)
     {
-      dd($request->file('file'),$request);
+      // ログインID
+      $userId = Auth::id();
+
+      // 画像の取得
+      $file = $request->file('file');
+
+      // 画像保存処理
+      $fname = date('Y-m-d');
+      Storage::disk('local')->put('images/' . $fname, $file);
+
+      Memory::create([
+        'title' => $request->title,
+        'text' => $request->targetDate,
+        'img_path' => $request->targetDateType,
+        'user_id' => $userId,
+        // 'date_id' => ,
+      ]);
     }
 
     /**

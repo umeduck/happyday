@@ -2,7 +2,7 @@
 import { onMounted, ref, reactive } from 'vue';
 import Header from '../../Components/Header.vue';
 import Footer from '../../Components/Footer.vue';
-import { Head, router } from '@inertiajs/vue3';
+import { Head, router, useForm } from '@inertiajs/vue3';
 const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 const headerHeight = ref('');
 const footerHeight = ref('');
@@ -12,7 +12,7 @@ const props =  defineProps({
   isLoggedIn : Boolean
 });
 
-const form = reactive({
+const form = useForm({
   title: '',
   text: '',
   img: '',
@@ -24,7 +24,6 @@ const makeMemory = (() => {
     _method: 'post',
     title: form.title,
     text: form.text,
-    img: form.img,
     file: form.file,
   });
 });
@@ -62,7 +61,6 @@ onMounted(() => {
         <div class="form-content">
           <label for="img">画像</label>
           <input type="file" name="img" @input="form.file = $event.target.files[0]">
-          <input type="hidden" v-model="form.img">
         </div>
         <p class="error-message"></p>
       </div>
