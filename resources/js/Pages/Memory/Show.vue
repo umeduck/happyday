@@ -6,11 +6,11 @@ import { Inertia } from '@inertiajs/inertia';
 
 const props =  defineProps({
   isLoggedIn : Boolean,
-  memory : Object
+  memory : Object,
+  isPermitUser : Boolean
 });
 
 const deleteMemory = id => {
-    console.log(id);
   Inertia.delete(route('memory.destroy', { memory: id }),{
     onBefore: () => confirm('本当に削除しますか？')
   });
@@ -28,7 +28,7 @@ const deleteMemory = id => {
       <div class="lg:flex-grow md:w-1/2 lg:pl-24 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center">
         <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">{{ memory.title }}</h1>
         <p class="mb-8 leading-relaxed">{{ memory.text }}</p>
-        <div class="flex justify-center">
+        <div v-if="isPermitUser" class="flex justify-center">
           <button class="inline-flex text-white bg-pink-500 border-0 py-2 px-6 focus:outline-none hover:bg-pink-600 rounded text-lg">編集</button>
           <button @click="deleteMemory(memory.id)" class="inline-flex text-white bg-pink-500 border-0 py-2 px-6 focus:outline-none hover:bg-pink-600 rounded text-lg">削除</button>
         </div>

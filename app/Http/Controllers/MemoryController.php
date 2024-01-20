@@ -69,6 +69,7 @@ class MemoryController extends Controller
         'user_id' => $userId,
         'date_id' => $request->dateId,
       ]);
+      return to_route('target-date.show', ['target_date' => $request->dateId]);
     }
 
     /**
@@ -81,10 +82,14 @@ class MemoryController extends Controller
     {
       // ログインフラグ
       $isLoggedIn = Auth::check();
-
+      // ログインID
+      $loginId = Auth::id();
+      // 許可ユーザチェック
+      $isPermitUser = $loginId == $memory->user_id ? true : false;
       return Inertia::render('Memory/Show', [
         'isLoggedIn' => $isLoggedIn,
-        'memory' => $memory
+        'memory' => $memory,
+        'isPermitUser' => $isPermitUser
       ]);
     }
 
