@@ -9,12 +9,13 @@ const footerHeight = ref('');
 const formHeight = ref('');
 
 const props =  defineProps({
-  isLoggedIn : Boolean
+  isLoggedIn : Boolean,
+  dateId : Number,
 });
 
 const form = useForm({
-  title: '',
-  text: '',
+  title: 'タイトル',
+  text: 'テキスト',
   img: '',
   file: null
 });
@@ -25,6 +26,7 @@ const makeMemory = (() => {
     title: form.title,
     text: form.text,
     file: form.file,
+    dateId: props.dateId
   });
 });
 

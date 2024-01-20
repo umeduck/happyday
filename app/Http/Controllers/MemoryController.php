@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Hash;
 
 
 class MemoryController extends Controller
@@ -26,12 +27,16 @@ class MemoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
       // ログインフラグ
       $isLoggedIn = Auth::check();
+
+      // 作成するターゲット日
+      $dateId = $request->id;
       return Inertia::render('Memory/Create', [
-        'isLoggedIn' => $isLoggedIn
+        'isLoggedIn' => $isLoggedIn,
+        'dateId' => $dateId
       ]);
     }
 
@@ -48,17 +53,21 @@ class MemoryController extends Controller
 
       // 画像の取得
       $file = $request->file('file');
-
+      dd($file);
       // 画像保存処理
+      $hashName = $file->hashName();
       $fname = date('Y-m-d');
-      Storage::disk('local')->put('images/' . $fname, $file);
 
+      // 画像の保存
+      Storage::put('public/images/' . $fname . '/', $file);
+
+      // DB登録
       Memory::create([
         'title' => $request->title,
-        'text' => $request->targetDate,
-        'img_path' => $request->targetDateType,
+        'text' => $request->text,
+        'img_path' => '/storage/images/' . $fname . '/' . $hashName,
         'user_id' => $userId,
-        // 'date_id' => ,
+        'date_id' => $request->dateId,
       ]);
     }
 

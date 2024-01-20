@@ -14,5 +14,5 @@ class TargetDate extends Model
       'target_date',
       'target_date_type',
       'user_id'
-  ];
+    ];
 }

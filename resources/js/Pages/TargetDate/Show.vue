@@ -28,6 +28,7 @@ const deleteTargetDate = id => {
         <div class="target-date-head-link-wrapper">
           <Link :href="route('target-date.edit', {id: targetDate.id})" class="target-date-head-link">編集</Link>
           <button @click="deleteTargetDate(props.targetDate.id)" class="target-date-head-link">削除</button>
+          <Link :href="route('memory.create', {id: targetDate.id})" class="target-date-head-link">メモリー作成</Link>
         </div>
       </div>
       <div class="target-date-body">
