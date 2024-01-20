@@ -53,7 +53,7 @@ class MemoryController extends Controller
 
       // 画像の取得
       $file = $request->file('file');
-      dd($file);
+
       // 画像保存処理
       $hashName = $file->hashName();
       $fname = date('Y-m-d');
