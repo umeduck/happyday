@@ -14,8 +14,8 @@ const props =  defineProps({
 });
 
 const form = useForm({
-  title: 'タイトル',
-  text: 'テキスト',
+  title: '',
+  text: '',
   img: '',
   file: null
 });
