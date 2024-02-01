@@ -57,10 +57,10 @@ class MemoryController extends Controller
       // 画像保存処理
       $hashName = $file->hashName();
       $fname = date('Y-m-d');
-dd("aaa");
+
       // 画像の保存
       Storage::put('public/images/' . $fname . '/', $file);
-
+      dd("aaa");
       // DB登録
       Memory::create([
         'title' => $request->title,
