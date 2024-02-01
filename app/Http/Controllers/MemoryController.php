@@ -60,7 +60,7 @@ class MemoryController extends Controller
 
       // 画像の保存
       Storage::put('public/images/' . $fname . '/', $file);
-      dd("aaa");
+      
       // DB登録
       Memory::create([
         'title' => $request->title,
@@ -69,6 +69,7 @@ class MemoryController extends Controller
         'user_id' => $userId,
         'date_id' => $request->dateId,
       ]);
+      dd("aaa");
       return to_route('target-date.show', ['target_date' => $request->dateId]);
     }
 
