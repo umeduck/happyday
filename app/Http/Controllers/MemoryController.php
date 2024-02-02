@@ -63,12 +63,11 @@ class MemoryController extends Controller
       
       // DB登録
       Memory::create([
-        'title' => "タイトル",
-        'text' => "テスト",
-        // 'img_path' => '/storage/images/' . $fname . '/' . $hashName,
-        'img_path' => '/storage/images/',
-        'user_id' => 1,
-        'date_id' => 1
+        'title' => $request->title,
+        'text' => $request->text,
+        'img_path' => '/storage/images/' . $fname . '/' . $hashName,
+        'user_id' => $userId,
+        'date_id' => $request->dateId
       ]);
       return to_route('target-date.show', ['target_date' => $request->dateId]);
     }
