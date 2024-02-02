@@ -63,8 +63,8 @@ class MemoryController extends Controller
       
       // DB登録
       Memory::create([
-        'title' => $request->title,
-        'text' => $request->text,
+        'title' => "タイトル",
+        'text' => "テスト",
         // 'img_path' => '/storage/images/' . $fname . '/' . $hashName,
         'img_path' => '/storage/images/',
         'user_id' => 1,
