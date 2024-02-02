@@ -60,7 +60,7 @@ class MemoryController extends Controller
 
       // 画像の保存
       Storage::put('public/images/' . $fname . '/', $file);
-      
+      dump($hashName);
       // DB登録
       Memory::create([
         'title' => $request->title,
