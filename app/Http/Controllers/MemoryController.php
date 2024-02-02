@@ -67,8 +67,8 @@ class MemoryController extends Controller
         'text' => $request->text,
         // 'img_path' => '/storage/images/' . $fname . '/' . $hashName,
         'img_path' => '/storage/images/',
-        'user_id' => $userId,
-        'date_id' => $request->dateId
+        'user_id' => 1,
+        'date_id' => 1
       ]);
       return to_route('target-date.show', ['target_date' => $request->dateId]);
     }
