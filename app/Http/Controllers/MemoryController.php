@@ -62,13 +62,13 @@ class MemoryController extends Controller
       Storage::put('public/images/' . $fname . '/', $file);
       
       // DB登録
-      // Memory::create([
-      //   'title' => $request->title,
-      //   'text' => $request->text,
-      //   'img_path' => '/storage/images/' . $fname . '/' . $hashName,
-      //   'user_id' => $userId,
-      //   'date_id' => $request->dateId
-      // ]);
+      Memory::create([
+        'title' => $request->title,
+        'text' => $request->text,
+        'img_path' => '/storage/images/' . $fname . '/' . $hashName,
+        'user_id' => $userId,
+        'date_id' => $request->dateId
+      ]);
       return to_route('target-date.show', ['target_date' => $request->dateId]);
     }
 
