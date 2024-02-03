@@ -12,9 +12,9 @@ const props = defineProps({
 });
 
 const form = useForm({
-    title: 'タイトル',
+    title: '',
     targetDate: '2000-01-01',
-    targetDateType: '1'
+    targetDateType: ''
 });
 
 const storeTargetDate = () => {
