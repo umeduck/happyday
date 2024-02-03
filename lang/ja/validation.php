@@ -35,7 +35,7 @@ return [
     'current_password'     => 'パスワードが正しくありません。',
     'date'                 => ':attributeには有効な日付を指定してください。',
     'date_equals'          => ':attributeには、:dateと同じ日付けを指定してください。',
-    'date_format'          => ':attributeは:format形式で指定してください。',
+    'date_format'          => '正しい日付ではありません。',
     'different'            => ':attributeと:otherには、異なった内容を指定してください。',
     'digits'               => ':attributeは:digits桁で指定してください。',
     'digits_between'       => ':attributeは:min桁から:max桁の間で指定してください。',
@@ -153,6 +153,10 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+      'title' => 'タイトル',
+      'targetDate' => 'ターゲット日',
+      'targetDateType' => 'ターゲットタイプ'
+    ],
 
 ];

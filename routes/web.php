@@ -20,7 +20,7 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/top', [TopController::class, 'index'])->name('top');
+Route::get('/', [TopController::class, 'index'])->name('top');
 
 //入力ページ
 Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
@@ -37,7 +37,7 @@ Route::resource('target-date',TargetDateController::class)
 Route::resource('memory',MemoryController::class)
 ->middleware(['auth','verified']);
 
-Route::get('/', function () {
+Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 

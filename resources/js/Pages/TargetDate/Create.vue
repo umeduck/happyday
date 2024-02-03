@@ -1,11 +1,10 @@
 <script setup>
 import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
-import { Inertia } from "@inertiajs/inertia";
 import TextInput from '@/Components/TextInput.vue';
 import Header from '@/Components/Header.vue';
 import Footer from '@/Components/Footer.vue';
-import { Head, Link, useForm } from '@inertiajs/vue3';
+import { Head, useForm } from '@inertiajs/vue3';
 
 const props = defineProps({
   isLoggedIn: Boolean
@@ -13,12 +12,13 @@ const props = defineProps({
 
 const form = useForm({
     title: '',
-    targetDate: '2000-01-01',
+    targetDate: '',
     targetDateType: ''
 });
 
 const storeTargetDate = () => {
-  Inertia.post('/target-date', form);
+  // Inertia.post('/target-date', form);
+  form.post(route("target-date.store"));
 };
 </script>
 

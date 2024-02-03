@@ -8,6 +8,7 @@ use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Api\CountDayController;
 use Illuminate\Support\Facades\DB;
+use App\Http\Requests\StoreTargetDateRequest;
 
 class TargetDateController extends Controller
 {
@@ -31,19 +32,25 @@ class TargetDateController extends Controller
       // ログインフラグ
       $isLoggedIn = Auth::check();
       return Inertia::render('TargetDate/Create', [
-        'isLoggedIn' => $isLoggedIn
+        'isLoggedIn' => $isLoggedIn,
       ]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\StoreTargetDateRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreTargetDateRequest $request)
     {
       $userId = Auth::id();
+      // $request->validate([
+      //   'title' => 'required',
+      // ]);
+      // if($errors->any()){
+      //   return response()->json($errors->all(), 422);
+      // }
       TargetDate::create([
         'title' => $request->title,
         'target_date' => $request->targetDate,
