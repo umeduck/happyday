@@ -1,8 +1,7 @@
 <script setup>
-import { Head, Link } from '@inertiajs/vue3';
+import { Head } from '@inertiajs/vue3';
 import { Inertia } from '@inertiajs/inertia';
-import Header from '../../Components/Header.vue';
-import Footer from '../../Components/Footer.vue';
+import GuestLayout from '@/Layouts/GuestLayout.vue';
 import { ref, onMounted, watch, reactive } from 'vue';
 
 const regex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
@@ -79,43 +78,43 @@ const contact = (() => {
 </script>
 <template>
   <Head title="トップページ" />
-  <Header />
-  <div class="form-wrapper" :style=formHeight>
-    <form @submit.prevent="contact" class="form-main">
-      <h1 class="form-title">お問い合わせ</h1>
-      <div class="form-contents">
-        <div class="form-content">
-          <label>メールアドレス[必須]</label>
-          <input
-            v-model="form.email"
-            name="email"
-            type="text">
+  <GuestLayout :isLoggedIn = false>
+    <div class="form-wrapper" :style=formHeight>
+      <form @submit.prevent="contact" class="form-main">
+        <h1 class="form-title">お問い合わせ</h1>
+        <div class="form-contents">
+          <div class="form-content">
+            <label>メールアドレス[必須]</label>
+            <input
+              v-model="form.email"
+              name="email"
+              type="text">
+          </div>
+          <p class="error-message">{{ error.email }}</p>
+          <div class="form-content">
+            <label>タイトル[必須]</label>
+            <input
+              v-model="form.title"
+              name="title"
+              type="text">
+          </div>
+          <p class="error-message">{{ error.title }}</p>
+          <div class="form-content">
+            <label>お問い合わせ内容[必須]</label>
+            <textarea v-model="form.text"></textarea>
+          </div>
+          <div class="error-placeholder">
+            <p class="error-message">{{ error.text }}</p>
+          </div>
         </div>
-        <p class="error-message">{{ error.email }}</p>
-        <div class="form-content">
-          <label>タイトル[必須]</label>
-          <input
-            v-model="form.title"
-            name="title"
-            type="text">
+        <div class="form-button-wrapper">
+          <button type="submit" class="form-button">
+            入力内容確認
+          </button>
         </div>
-        <p class="error-message">{{ error.title }}</p>
-        <div class="form-content">
-          <label>お問い合わせ内容[必須]</label>
-          <textarea v-model="form.text"></textarea>
-        </div>
-        <div class="error-placeholder">
-          <p class="error-message">{{ error.text }}</p>
-        </div>
-      </div>
-      <div class="form-button-wrapper">
-        <button type="submit" class="form-button">
-          入力内容確認
-        </button>
-      </div>
-    </form>
-  </div>
-  <Footer />
+      </form>
+    </div>
+  </GuestLayout>
 </template>
 
 <style scoped>

@@ -1,9 +1,7 @@
 <script setup>
-import { onMounted, ref } from 'vue';
-import Header from '../../Components/Header.vue';
-import Footer from '../../Components/Footer.vue';
 import { Head, Link } from '@inertiajs/vue3';
 import { Inertia } from '@inertiajs/inertia';
+import GuestLayout from '@/Layouts/GuestLayout.vue';
 
 const props =  defineProps({
   isLoggedIn : Boolean,
@@ -20,37 +18,37 @@ const deleteTargetDate = id => {
 </script>
 <template>
   <Head title="ターゲット日詳細" />
-  <Header :isLoggedIn = props.isLoggedIn></Header>
-  <div class="main-target-show" :key="reloadKey">
-    <div class="target-date-content">
-      <div class="target-date-head">
-        <p>{{ targetDate.title }}</p>
-        <div class="target-date-head-link-wrapper">
-          <Link :href="route('target-date.edit', {id: targetDate.id})" class="target-date-head-link">編集</Link>
-          <button @click="deleteTargetDate(props.targetDate.id)" class="target-date-head-link">削除</button>
-          <Link :href="route('memory.create', {id: targetDate.id})" class="target-date-head-link">メモリー作成</Link>
-        </div>
-      </div>
-      <div class="target-date-body">
-        <p>{{ targetDate.target_date }}</p><p>残り{{ targetDate.target_date_count }}日</p>
-      </div>
-    </div>
-    <div class="memory-contents">
-      <div v-for="memory in props.memories" class="memory-content">
-        <div class="memory-head">
-          <Link :href="route('memory.show', {id: memory.id})"><p>{{ memory.title }}</p></Link>
-          <div class="">
-            <Link :href="route('top')" class="memory-head-link">編集</Link>
-            <Link :href="route('top')" class="memory-head-link">削除</Link>
+  <GuestLayout :isLoggedIn = props.isLoggedIn>
+    <div class="main-target-show" :key="reloadKey">
+      <div class="target-date-content">
+        <div class="target-date-head">
+          <p>{{ targetDate.title }}</p>
+          <div class="target-date-head-link-wrapper">
+            <Link :href="route('target-date.edit', {id: targetDate.id})" class="target-date-head-link">編集</Link>
+            <button @click="deleteTargetDate(props.targetDate.id)" class="target-date-head-link">削除</button>
+            <Link :href="route('memory.create', {id: targetDate.id})" class="target-date-head-link">メモリー作成</Link>
           </div>
         </div>
-        <div class="memory-body">
-          <p>{{ memory.created_at }}</p>
+        <div class="target-date-body">
+          <p>{{ targetDate.target_date }}</p><p>残り{{ targetDate.target_date_count }}日</p>
+        </div>
+      </div>
+      <div class="memory-contents">
+        <div v-for="memory in props.memories" class="memory-content">
+          <div class="memory-head">
+            <Link :href="route('memory.show', {id: memory.id})"><p>{{ memory.title }}</p></Link>
+            <div class="">
+              <Link :href="route('top')" class="memory-head-link">編集</Link>
+              <Link :href="route('top')" class="memory-head-link">削除</Link>
+            </div>
+          </div>
+          <div class="memory-body">
+            <p>{{ memory.created_at }}</p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <Footer></Footer>
+  </GuestLayout>
 </template>
 <style scoped>
 .main-target-show{

@@ -1,7 +1,6 @@
 <script setup>
 import { Head, Link } from '@inertiajs/vue3';
-import Header from '../../Components/Header.vue';
-import Footer from '../../Components/Footer.vue';
+import GuestLayout from '@/Layouts/GuestLayout.vue';
 import { ref, onMounted } from 'vue';
 
 const headerHeight = ref('');
@@ -20,16 +19,16 @@ onMounted(() => {
 </script>
 <template>
   <Head title="トップページ" />
-  <Header />
-  <div class="completion-wrapper" :style=completionHeight>
-    <div class="completion-main">
-      <h1 class="completion-title">送信が完了しました</h1>
-      <div class="completion-button-wrapper">
-        <Link :href="route('top')" class="completion-button">トップページへ</Link>
+  <GuestLayout :isLoggedIn = false>
+    <div class="completion-wrapper" :style=completionHeight>
+      <div class="completion-main">
+        <h1 class="completion-title">送信が完了しました</h1>
+        <div class="completion-button-wrapper">
+          <Link :href="route('top')" class="completion-button">トップページへ</Link>
+        </div>
       </div>
     </div>
-  </div>
-  <Footer />
+  </GuestLayout>
 </template>
 
 <style scoped>

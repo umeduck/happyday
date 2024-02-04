@@ -3,9 +3,8 @@ import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import { Inertia } from "@inertiajs/inertia";
 import TextInput from '@/Components/TextInput.vue';
-import Header from '@/Components/Header.vue';
-import Footer from '@/Components/Footer.vue';
-import { Head, Link, useForm } from '@inertiajs/vue3';
+import { Head, useForm } from '@inertiajs/vue3';
+import GuestLayout from '@/Layouts/GuestLayout.vue';
 
 const props = defineProps({
   isLoggedIn: Boolean,
@@ -26,55 +25,55 @@ const updateTargetDate = id => {
 
 <template>
   <Head title="Register" />
-  <Header :isLoggedIn = props.isLoggedIn></Header>
-  <div class="main-target-create">
-    <form @submit.prevent="updateTargetDate(form.id)" class="target-form">
-      <div>
-        <InputLabel for="title" value="タイトル" />
+  <GuestLayout :isLoggedIn = props.isLoggedIn>
+    <div class="main-target-create">
+      <form @submit.prevent="updateTargetDate(form.id)" class="target-form">
+        <div>
+          <InputLabel for="title" value="タイトル" />
 
-        <TextInput
-          id="title"
-          type="text"
-          class="mt-1 block w-full"
-          v-model="form.title"
-          required
-          autofocus
-        />
+          <TextInput
+            id="title"
+            type="text"
+            class="mt-1 block w-full"
+            v-model="form.title"
+            required
+            autofocus
+          />
 
-        <InputError class="mt-2" :message="form.errors.title" />
-      </div>
+          <InputError class="mt-2" :message="form.errors.title" />
+        </div>
 
-      <div class="mt-4">
-        <InputLabel for="target_date" value="ターゲット日" />
+        <div class="mt-4">
+          <InputLabel for="target_date" value="ターゲット日" />
 
-        <TextInput
-          id="targetDate"
-          type="date"
-          class="mt-1 block w-full"
-          v-model="form.targetDate"
-          required
-        />
+          <TextInput
+            id="targetDate"
+            type="date"
+            class="mt-1 block w-full"
+            v-model="form.targetDate"
+            required
+          />
 
-        <InputError class="mt-2" :message="form.errors.targetDate" />
-      </div>
+          <InputError class="mt-2" :message="form.errors.targetDate" />
+        </div>
 
-      <div class="mt-4">
-        <InputLabel for="birthday" value="ターゲットタイプ" />
+        <div class="mt-4">
+          <InputLabel for="birthday" value="ターゲットタイプ" />
 
-        <select v-model="form.targetDateType" class="mt-1 block w-full" required>
-          <option value='' selected>-- 選択してください --</option>
-          <option value=1>誕生日</option>
-          <option value=2>記念日</option>
-        </select>
+          <select v-model="form.targetDateType" class="mt-1 block w-full" required>
+            <option value='' selected>-- 選択してください --</option>
+            <option value=1>誕生日</option>
+            <option value=2>記念日</option>
+          </select>
 
-        <InputError class="mt-2" :message="form.errors.targetDateType" />
-      </div>
-      <div class="target-create-button">
-        <button >更新</button>
-      </div>
-    </form>
-  </div>
-  <Footer></Footer>
+          <InputError class="mt-2" :message="form.errors.targetDateType" />
+        </div>
+        <div class="target-create-button">
+          <button >更新</button>
+        </div>
+      </form>
+    </div>
+  </GuestLayout>
 </template>
 <style>
 .main-target-create{

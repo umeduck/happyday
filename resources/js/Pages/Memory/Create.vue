@@ -1,8 +1,8 @@
 <script setup>
-import { onMounted, ref, reactive } from 'vue';
-import Header from '../../Components/Header.vue';
-import Footer from '../../Components/Footer.vue';
+import { onMounted, ref } from 'vue';
 import { Head, router, useForm } from '@inertiajs/vue3';
+import GuestLayout from '@/Layouts/GuestLayout.vue';
+
 const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 const headerHeight = ref('');
 const footerHeight = ref('');
@@ -43,37 +43,37 @@ onMounted(() => {
 
 <template>
   <Head title="memory create" />
-  <Header :isLoggedIn = props.isLoggedIn></Header>
-  <div class="form-wrapper" :style=formHeight>
-    <form @submit.prevent="makeMemory" class="form-main" enctype="multipart/form-data">
-      <h1 class="form-title">メモリー作成</h1>
-      <div class="form-contents">
-        <div class="form-content">
-          <label for="title">タイトル</label>
-          <input name="title" type="text" v-model="form.title">
-        </div>
-        <p class="error-message"></p>
-        <div class="form-content">
-          <label for="text">テキスト</label>
-          <textarea name="text" v-model="form.text"></textarea>
-        </div>
-        <div class="error-placeholder">
+  <GuestLayout :isLoggedIn = props.isLoggedIn>
+    <div class="form-wrapper" :style=formHeight>
+      <form @submit.prevent="makeMemory" class="form-main" enctype="multipart/form-data">
+        <h1 class="form-title">メモリー作成</h1>
+        <div class="form-contents">
+          <div class="form-content">
+            <label for="title">タイトル</label>
+            <input name="title" type="text" v-model="form.title">
+          </div>
+          <p class="error-message"></p>
+          <div class="form-content">
+            <label for="text">テキスト</label>
+            <textarea name="text" v-model="form.text"></textarea>
+          </div>
+          <div class="error-placeholder">
+            <p class="error-message"></p>
+          </div>
+          <div class="form-content">
+            <label for="img">画像</label>
+            <input type="file" name="img" @input="form.file = $event.target.files[0]">
+          </div>
           <p class="error-message"></p>
         </div>
-        <div class="form-content">
-          <label for="img">画像</label>
-          <input type="file" name="img" @input="form.file = $event.target.files[0]">
+        <div class="form-button-wrapper">
+          <button type="submit" class="form-button">
+            作成
+          </button>
         </div>
-        <p class="error-message"></p>
-      </div>
-      <div class="form-button-wrapper">
-        <button type="submit" class="form-button">
-          作成
-        </button>
-      </div>
-    </form>
-  </div>
-  <Footer></Footer>
+      </form>
+    </div>
+  </GuestLayout>
 </template>
 <style>
 .form-wrapper{
