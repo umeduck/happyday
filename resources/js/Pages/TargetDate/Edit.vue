@@ -19,7 +19,8 @@ const form = useForm({
 });
 
 const updateTargetDate = id => {
-  Inertia.put(route('target-date.update', {target_date: id}), form);
+  // Inertia.put(route('target-date.update', {target_date: id}), form);
+  form.put(route("target-date.update", {target_date: id}));
 };
 </script>
 

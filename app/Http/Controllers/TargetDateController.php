@@ -112,7 +112,7 @@ class TargetDateController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, TargetDate $targetDate)
+    public function update(StoreTargetDateRequest $request, TargetDate $targetDate)
     {
       $targetDate->title = $request->title;
       $targetDate->target_date = $request->targetDate;
