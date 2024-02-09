@@ -1,5 +1,5 @@
 <script setup>
-import { Head } from '@inertiajs/vue3';
+import { Head, Link } from '@inertiajs/vue3';
 import { Inertia } from '@inertiajs/inertia';
 import GuestLayout from '@/Layouts/GuestLayout.vue';
 
@@ -28,7 +28,7 @@ const deleteMemory = id => {
           <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">{{ memory.title }}</h1>
           <p class="mb-8 leading-relaxed">{{ memory.text }}</p>
           <div v-if="isPermitUser" class="flex justify-center">
-            <button class="inline-flex text-white bg-pink-500 border-0 py-2 px-6 focus:outline-none hover:bg-pink-600 rounded text-lg">編集</button>
+            <Link :href="route('memory.edit', {id: memory.id})" class="inline-flex text-white bg-pink-500 border-0 py-2 px-6 focus:outline-none hover:bg-pink-600 rounded text-lg">編集</Link>
             <button @click="deleteMemory(memory.id)" class="inline-flex text-white bg-pink-500 border-0 py-2 px-6 focus:outline-none hover:bg-pink-600 rounded text-lg">削除</button>
           </div>
         </div>

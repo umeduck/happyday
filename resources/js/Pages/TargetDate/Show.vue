@@ -38,7 +38,7 @@ const deleteTargetDate = id => {
           <div class="memory-head">
             <Link :href="route('memory.show', {id: memory.id})"><p>{{ memory.title }}</p></Link>
             <div class="">
-              <Link :href="route('top')" class="memory-head-link">編集</Link>
+              <Link :href="route('memory.edit', {id: memory.id})" class="memory-head-link">編集</Link>
               <Link :href="route('top')" class="memory-head-link">削除</Link>
             </div>
           </div>

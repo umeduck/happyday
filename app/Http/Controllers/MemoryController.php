@@ -97,11 +97,23 @@ class MemoryController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
+     * @param  \App\Models\TargetDate  $targetDate
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Memory $memory)
     {
-        //
+      // ログインフラグ
+      $isLoggedIn = Auth::check();
+      // ログインID
+      $loginId = Auth::id();
+
+      // 許可ユーザチェック
+      $isPermitUser = $loginId == $memory->user_id ? true : false;
+      return Inertia::render('Memory/Edit', [
+        'isLoggedIn' => $isLoggedIn,
+        'memory' => $memory,
+        'isPermitUser' => $isPermitUser
+      ]);
     }
 
     /**
@@ -111,9 +123,30 @@ class MemoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Memory $memory)
     {
-        //
+        // ログインID
+      $userId = Auth::id();
+
+      if($request->file('file')){
+        // ファイルの取得
+        $file = $request->file('file');
+        // ファイル名の作成
+        $hashName = $file->hashName();
+        $fname = date('Y-m-d');
+        $imgPath = '/storage/images/' . $fname . '/' . $hashName;
+        // 画像の保存
+        Storage::put('public/images/' . $fname . '/', $file);
+      }else{
+        $imgPath = $request->imgPath;
+      }
+      // DB更新
+      $memory->title = $request->title;
+      $memory->text = $request->text;
+      $memory->img_path = $imgPath;
+      $memory->save();
+
+      return to_route('target-date.show', ['target_date' => $request->dateId]);
     }
 
     /**
