@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\StoreMemoryRequest;
 
 
 class MemoryController extends Controller
@@ -46,7 +46,7 @@ class MemoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreMemoryRequest $request)
     {
       // ログインID
       $userId = Auth::id();
@@ -107,12 +107,10 @@ class MemoryController extends Controller
       // ログインID
       $loginId = Auth::id();
 
-      // 許可ユーザチェック
       $isPermitUser = $loginId == $memory->user_id ? true : false;
       return Inertia::render('Memory/Edit', [
         'isLoggedIn' => $isLoggedIn,
-        'memory' => $memory,
-        'isPermitUser' => $isPermitUser
+        'memory' => $memory
       ]);
     }
 
@@ -123,11 +121,9 @@ class MemoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Memory $memory)
+    public function update(StoreMemoryRequest $request, Memory $memory)
     {
-        // ログインID
-      $userId = Auth::id();
-
+      // dd($request);
       if($request->file('file')){
         // ファイルの取得
         $file = $request->file('file');

@@ -2,6 +2,9 @@
 import { BaseTransitionPropsValidators, onMounted, ref } from 'vue';
 import { Head, router, useForm } from '@inertiajs/vue3';
 import GuestLayout from '@/Layouts/GuestLayout.vue';
+import InputError from '@/Components/InputError.vue';
+import InputLabel from '@/Components/InputLabel.vue';
+import TextInput from '@/Components/TextInput.vue';
 
 const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 const headerHeight = ref('');
@@ -12,12 +15,15 @@ const props =  defineProps({
   isLoggedIn : Boolean,
   memory: Object,
   dateId : Number,
+  errors: Object
 });
 
 const form = useForm({
   title: props.memory.title,
   text: props.memory.text,
-  file: null
+  imgPath: props.memory.img_path,
+  file: null,
+  dateId: props.memory.date_id
 });
 
 const formData = new FormData();
@@ -52,15 +58,29 @@ onMounted(() => {
       <form @submit.prevent="makeMemory" class="form-main" enctype="multipart/form-data">
         <h1 class="form-title">メモリー編集</h1>
         <div class="form-contents">
-          <div class="form-content">
-            <label for="title">タイトル</label>
-            <input name="title" type="text" v-model="form.title">
-          </div>
+          <InputLabel for="title" value="タイトル" />
+
+          <TextInput
+            id="title"
+            type="text"
+            class="mt-1 block w-full"
+            v-model="form.title"
+            required
+            autofocus
+          />
+          <InputError class="mt-2" :message="errors.title" />
           <p class="error-message"></p>
-          <div class="form-content">
-            <label for="text">テキスト</label>
-            <textarea name="text" v-model="form.text"></textarea>
-          </div>
+          <InputLabel for="text" value="テキスト" />
+
+          <TextInput
+            id="text"
+            type="text"
+            class="mt-1 block w-full"
+            v-model="form.text"
+            required
+            autofocus
+          />
+          <InputError class="mt-2" :message="errors.text" />
           <div class="error-placeholder">
             <p class="error-message"></p>
           </div>
@@ -68,6 +88,7 @@ onMounted(() => {
             <label for="img">画像</label>
             <input type="file" name="img" @input="form.file = $event.target.files[0]">
           </div>
+          <p>※画像が選択がされていない場合、元の画像が設定されます</p>
           <p class="error-message"></p>
         </div>
         <div class="form-button-wrapper">

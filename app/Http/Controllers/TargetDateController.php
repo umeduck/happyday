@@ -45,12 +45,6 @@ class TargetDateController extends Controller
     public function store(StoreTargetDateRequest $request)
     {
       $userId = Auth::id();
-      // $request->validate([
-      //   'title' => 'required',
-      // ]);
-      // if($errors->any()){
-      //   return response()->json($errors->all(), 422);
-      // }
       TargetDate::create([
         'title' => $request->title,
         'target_date' => $request->targetDate,

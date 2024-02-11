@@ -156,7 +156,8 @@ return [
     'attributes' => [
       'title' => 'タイトル',
       'targetDate' => 'ターゲット日',
-      'targetDateType' => 'ターゲットタイプ'
+      'targetDateType' => 'ターゲットタイプ',
+      'text' => 'テキスト'
     ],
 
 ];
