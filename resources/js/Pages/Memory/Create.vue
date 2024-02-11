@@ -73,7 +73,6 @@ onMounted(() => {
             class="mt-1 block w-full"
             v-model="form.text"
             required
-            autofocus
           />
           <InputError class="mt-2" :message="props.errors.text" />
           <div class="error-placeholder">
