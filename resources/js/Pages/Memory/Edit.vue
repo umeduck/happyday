@@ -68,10 +68,10 @@ onMounted(() => {
             required
             autofocus
           />
-          <InputError class="mt-2" :message="errors.title" />
-          <p class="error-message"></p>
+          <p class="error-message">
+            <InputError class="mt-2" :message="errors.title" />
+          </p>
           <InputLabel for="text" value="テキスト" />
-
           <TextInput
             id="text"
             type="text"
@@ -80,16 +80,15 @@ onMounted(() => {
             required
             autofocus
           />
-          <InputError class="mt-2" :message="errors.text" />
-          <div class="error-placeholder">
-            <p class="error-message"></p>
-          </div>
-          <div class="form-content">
-            <label for="img">画像</label>
-            <input type="file" name="img" @input="form.file = $event.target.files[0]">
-          </div>
+          <p class="error-message">
+            <InputError class="mt-2" :message="errors.text" />
+          </p>
+          <InputLabel for="img" value="画像" />
+          <input type="file" name="img" @input="form.file = $event.target.files[0]">
           <p>※画像が選択がされていない場合、元の画像が設定されます</p>
-          <p class="error-message"></p>
+          <p class="error-message">
+            <InputError class="mt-2" :message="errors.file" />
+          </p>
         </div>
         <div class="form-button-wrapper">
           <button type="submit" class="form-button">

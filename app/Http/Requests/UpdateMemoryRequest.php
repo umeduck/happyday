@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules\File;
 
-class StoreMemoryRequest extends FormRequest
+class UpdateMemoryRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -28,10 +28,10 @@ class StoreMemoryRequest extends FormRequest
           'title' => ['required', 'max:55'],
           'text' => ['required'],
           'file' => [
-            'required',
             'image',
             'max:1024',
             'mimes:jpg,png',
+            'nullable'
           ]
         ];
     }

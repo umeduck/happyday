@@ -8,6 +8,7 @@ use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\StoreMemoryRequest;
+use App\Http\Requests\UpdateMemoryRequest;
 
 
 class MemoryController extends Controller
@@ -121,7 +122,7 @@ class MemoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreMemoryRequest $request, Memory $memory)
+    public function update(UpdateMemoryRequest $request, Memory $memory)
     {
       // dd($request);
       if($request->file('file')){

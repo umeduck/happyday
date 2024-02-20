@@ -157,7 +157,8 @@ return [
       'title' => 'タイトル',
       'targetDate' => 'ターゲット日',
       'targetDateType' => 'ターゲットタイプ',
-      'text' => 'テキスト'
+      'text' => 'テキスト',
+      'file' => '画像'
     ],
 
 ];
