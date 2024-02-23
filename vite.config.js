@@ -6,10 +6,13 @@ export default defineConfig({
   build: {
     base: 'https://aniva.umeduck.com/',
     assetsDir: 'assets',
+    define: {
+      'process.env.PROTOCOL': JSON.stringify(process.env.PROTOCOL || 'http'),
+    },
   },
-  server: {
-    https: true,
-  },
+  // server: {
+  //   https: true,
+  // },
   plugins: [
     laravel({
       input: 'resources/js/app.js',
