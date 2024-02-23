@@ -4,7 +4,8 @@
         "dev": "vite",
         "build": "vite build",
         "lint": "eslint",
-        "lint:fix": "eslint --fix"
+        "lint:fix": "eslint --fix",
+        "vite": "vite -v"
     },
     "devDependencies": {
         "@inertiajs/vue3": "^1.0.0",
