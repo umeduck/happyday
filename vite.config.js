@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
 import vue from '@vitejs/plugin-vue';
+import vitePluginHttps from 'vite-plugin-https';
 
 export default defineConfig({
   build: {
@@ -25,5 +26,6 @@ export default defineConfig({
           },
         },
     }),
+    vitePluginHttps()
   ],
 });
