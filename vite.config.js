@@ -3,10 +3,13 @@ import laravel from 'laravel-vite-plugin';
 import vue from '@vitejs/plugin-vue';
 
 export default defineConfig({
-  base: 'https://aniva.umeduck.com/',
-  // server: {
-  //   https: true,
-  // },
+  build: {
+    base: 'https://aniva.umeduck.com/',
+    assetsDir: 'assets',
+  },
+  server: {
+    https: true,
+  },
   plugins: [
     laravel({
       input: 'resources/js/app.js',
