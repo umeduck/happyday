@@ -5,7 +5,7 @@ import vitePluginHttps from 'vite-plugin-https';
 
 export default defineConfig({
   build: {
-    base: 'https://aniva.umeduck.com',
+    publicDir: './public',
   },
   define: {
     'process.env.PROTOCOL': JSON.stringify(process.env.PROTOCOL || 'http'),
