@@ -6,6 +6,7 @@ import vitePluginHttps from 'vite-plugin-https';
 export default defineConfig({
   build: {
     publicDir: './public',
+    outDir: './dist',
   },
   define: {
     'process.env.PROTOCOL': JSON.stringify(process.env.PROTOCOL || 'http'),
