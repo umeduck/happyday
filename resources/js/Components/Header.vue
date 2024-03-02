@@ -10,7 +10,7 @@ const props = defineProps({
       <div class="header-left">
         <div class="top-links">
           <img src="/images/main-logo.png" class="main-logo" alt="">
-          <Link :href="route('top', '', true)" class="top-link-text">Anniv</Link>
+          <Link :href="route('top')" class="top-link-text">Anniv</Link>
         </div>
       </div>
       <div class="header-right">
