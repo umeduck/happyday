@@ -11,9 +11,9 @@ export default defineConfig({
   define: {
     'process.env.PROTOCOL': JSON.stringify(process.env.PROTOCOL || 'http'),
   },
-  server: {
-    https: true,
-  },
+  // server: {
+  //   https: true,
+  // },
   plugins: [
     laravel({
       input: 'resources/js/app.js',
@@ -27,6 +27,6 @@ export default defineConfig({
           },
         },
     }),
-    vitePluginHttps()
+    // vitePluginHttps()
   ],
 });
