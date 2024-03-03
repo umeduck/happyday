@@ -30,7 +30,7 @@ class StoreMemoryRequest extends FormRequest
           'file' => [
             'required',
             'image',
-            'max:1024',
+            'max:2048',
             'mimes:jpg,png',
           ]
         ];
